@@ -1,6 +1,10 @@
 // restaurantService.js
 import { supabase } from '../supabase';
+import { getMenuItems } from '../controladores/restaurantController';
 
+export const fetchMenuItems = async (restaurant_id) => {
+  return await getMenuItems(restaurant_id);
+};
 export const addRestaurant = async ({ owner_id, name, description, address }) => {
   const { data, error } = await supabase.from('restaurants').insert([{ owner_id, name, description, address }]).select();
   if (error) throw error;
